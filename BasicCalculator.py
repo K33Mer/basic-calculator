@@ -10,27 +10,43 @@ from Functions import *
 
 for line in sys.stdin:
     line = line.rstrip()
-    if '+' in line:
-        nums = line.split('+')
-        print(add(int(nums[0]), int(nums[1])))
-    elif '-' in line:
-        nums = line.split('-')
-        print(subtract(int(nums[0]), int(nums[1])))
-    elif '*' in line:
-        nums = line.split('*')
-        print(multiply(int(nums[0]), int(nums[1])))
-    elif '/' in line:
-        nums = line.split('/')
-        print(divide(int(nums[0]), int(nums[1])))
-    elif '%' in line:
-        nums = line.split('%')
-        print(mod(int(nums[0]), int(nums[1])))
-    elif '^' in line:
-        nums = line.split('^')
-        print(exponent(int(nums[0]), int(nums[1])))
-    elif line == "quit" or line == "exit":
-        exit()
-    else:
-        print("This mathematical expression is either wrong or not supported.")
+
+    #My Contribution Error Handling
+    #Now Supports Floating Numbers
+    #Will Catch invalid Input(e.g. abc +2)
+    if line.lower() in ["quit", "exit"]:
+       print("Exiting calculator...")
+       exit()
+
+
+    try:  
+        if '+' in line:
+            nums = line.split('+')
+            print(add(float(nums[0]), float(nums[1])))
+        elif '-' in line:
+            nums = line.split('-')
+            print(subtract(float(nums[0]), float(nums[1])))
+        elif '*' in line:
+            nums = line.split('*')
+            print(multiply(float(nums[0]), float(nums[1])))
+        elif '/' in line:
+            nums = line.split('/')
+            denominator = float(nums[1])
+            if denominator == 0:
+                print("Error: Division by zero is not allowed.")
+            else:
+                print(divide(float(nums[0]),denominator)) 
+        elif '%' in line:
+            nums = line.split('%')
+            print(mod(float(nums[0]), float(nums[1])))
+        elif '^' in line:
+            nums = line.split('^')
+            print(exponent(float(nums[0]), float(nums[1])))
+        else:
+            print("This mathematical expression is either wrong or not supported.")
+    except ValueError:
+        print("Error: Please enter valid numbers.")
+    except Exception as e:
+        print(f"Unexpected error: {e}")            
     
   
