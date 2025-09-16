@@ -5,6 +5,7 @@
 # New Delhi, India
 
 import sys
+import math
 from Functions import *
 #Python program to create a simple calculator 
 
@@ -42,7 +43,15 @@ for line in sys.stdin:
         elif '^' in line:
             nums = line.split('^')
             print(exponent(float(nums[0]), float(nums[1])))
-        else:
+        elif 'sqrt' in line:
+            # My New COntribution: Square Root Function
+            num_str = line.replace("sqrt", "").strip()
+            num = float(num_str)
+            if num < 0:
+                print("Error: Cannot take square root of a negative number.")
+            else:
+                print(math.sqrt(num))
+        else:            
             print("This mathematical expression is either wrong or not supported.")
     except ValueError:
         print("Error: Please enter valid numbers.")
