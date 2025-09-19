@@ -51,8 +51,26 @@ for line in sys.stdin:
                 print("Error: Cannot take square root of a negative number.")
             else:
                 print(math.sqrt(num))
+            
+            # My New Contribution
+        elif 'sin' in line:
+            num_str = line.replace("sin", "").strip()
+            num = float(num_str)
+            print(math.tan(math.radians(num)))  # degrees -> radians
+        
+        elif 'cos' in line:
+            num_str = line.replace("cos", "").strip()
+            num = float(num_str)
+            print(math.cos(math.radians(num)))  
+
+        elif 'tan' in line:
+            num_str = line.replace("tan", "").strip()
+            num = float(num_str)
+            print(math.tan(math.radians(num)))            
+        
         else:            
             print("This mathematical expression is either wrong or not supported.")
+    
     except ValueError:
         print("Error: Please enter valid numbers.")
     except Exception as e:
